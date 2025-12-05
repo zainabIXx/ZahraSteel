@@ -1,4 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
+import fab from "../assets/fab.jpeg";
+import las from "../assets/las.jpg";
+import pvc from "../assets/pvc.jpg";
+import dru from "../assets/dru.jpeg";
+import fen from "../assets/fen.jpg";
 
 const Services: React.FC = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -10,27 +15,27 @@ const Services: React.FC = () => {
   const services = [
     {
       title: "Steel Fabrication",
-      image: "/src/assets/fab.jpeg",
+      image: fab,
       description: "Expert steel fabrication services for industrial and commercial projects with precision-engineered solutions."
     },
     {
       title: "Laser Cutting",
-      image: "/src/assets/las.jpg",
+      image: las,
       description: "State-of-the-art laser cutting technology for precise metal work with clean cuts and intricate designs."
     },
     {
       title: "Powder & PVC Coating",
-      image: "/src/assets/pvc.jpg",
+      image: pvc,
       description: "Professional coating services providing superior protection, corrosion resistance, and long-lasting finish."
     },
     {
       title: "Steel & Wooden Cable Drums",
-      image: "/src/assets/dru.jpeg",
+      image: dru,
       description: "High-quality cable drums manufactured to industry standards for safe storage and transportation."
     },
     {
       title: "Fencing Solutions",
-      image: "/src/assets/fen.jpg",
+      image: fen,
       description: "Durable and secure fencing systems for residential, industrial, and commercial environments."
     },
   ];
@@ -116,7 +121,7 @@ const Services: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-              transitionDelay: '150ms',
+              transitionDelay: '100ms',
             }}
           >
             <span
@@ -137,14 +142,14 @@ const Services: React.FC = () => {
             className="flex items-center justify-center gap-3 mb-6 transition-all duration-700 ease-out"
             style={{
               opacity: isVisible ? 1 : 0,
-              transitionDelay: '250ms',
+              transitionDelay: '100ms',
             }}
           >
             <div 
               className="h-px bg-gradient-to-r from-[#ed1b24] to-transparent transition-all duration-1000 ease-out"
               style={{
                 width: isVisible ? '64px' : '0px',
-                transitionDelay: '250ms',
+                transitionDelay: '100ms',
               }}
             ></div>
             <div className="w-2 h-2 bg-[#ed1b24] rotate-45"></div>
@@ -155,7 +160,7 @@ const Services: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '300ms',
+              transitionDelay: '100ms',
             }}
           >
             A refined service framework engineered to optimize workflow, strengthen outcomes, and support every phase with professional precision.
