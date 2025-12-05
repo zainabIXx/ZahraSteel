@@ -163,14 +163,14 @@ const Footer: React.FC = () => {
               className="flex items-center justify-center gap-3 mb-6 transition-all duration-700 ease-out"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transitionDelay: '500ms',
+                transitionDelay: '100ms',
               }}
             >
               <div 
                 className="h-px bg-gradient-to-r from-[#ed1b24] to-transparent transition-all duration-1000 ease-out"
                 style={{
                   width: isVisible ? '64px' : '0px',
-                  transitionDelay: '500ms',
+                  transitionDelay: '100ms',
                 }}
               ></div>
               <div className="w-2 h-2 bg-[#ed1b24] rotate-45"></div>
@@ -181,7 +181,7 @@ const Footer: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: '700ms',
+                transitionDelay: '100ms',
               }}
             >
               Get expert guidance, tailored solutions, and exceptional value for your steel fabrication needs.
@@ -196,7 +196,7 @@ const Footer: React.FC = () => {
                 style={{
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? 'translateX(0)' : 'translateX(-50px)',
-                  transitionDelay: '900ms',
+                  transitionDelay: '100ms',
                 }}
               >
                 <h3 className="text-xl font-heading mb-6 text-gray-800 border-l-4 border-[#ed1b24] pl-4">Send Us a Message</h3>
@@ -275,7 +275,7 @@ const Footer: React.FC = () => {
                 style={{
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? 'translateX(0)' : 'translateX(50px)',
-                  transitionDelay: '1100ms',
+                  transitionDelay: '100ms',
                 }}
               >
                 
@@ -356,7 +356,7 @@ const Footer: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transitionDelay: '1300ms',
+                transitionDelay: '100ms',
               }}
             >
               <div className="flex items-center gap-3 mb-6">
@@ -377,7 +377,7 @@ const Footer: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transitionDelay: '1450ms',
+                transitionDelay: '100ms',
               }}
             >
               <h3 className="font-heading text-gray-900 mb-6 text-sm uppercase tracking-wider">Quick Links</h3>
@@ -394,7 +394,7 @@ const Footer: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transitionDelay: '1600ms',
+                transitionDelay: '100ms',
               }}
             >
               <h3 className="font-heading text-gray-900 mb-6 text-sm uppercase tracking-wider">Contact Us</h3>
@@ -434,7 +434,7 @@ const Footer: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '1750ms',
+              transitionDelay: '100ms',
             }}
           >
             <p className="text-gray-600 text-sm">

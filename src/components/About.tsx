@@ -133,8 +133,8 @@ const About = () => {
                   height: '220px',
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? 'translateY(0) scale(1)' : 'translateY(30px) scale(0.95)',
-                  transition: 'all 0.7s ease-out',
-                  transitionDelay: `${1100 + idx * 150}ms`,
+                  transition: 'all 0.5s ease-out',
+                  transitionDelay: `${800 + idx * 100}ms`,
                 }}
               >
                 <img

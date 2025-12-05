@@ -102,7 +102,7 @@ const Clients: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '50ms',
+              transitionDelay: '100ms',
             }}
           >
             <div className="h-px w-12 bg-[#ed1b24]"></div>
@@ -116,7 +116,7 @@ const Clients: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-              transitionDelay: '150ms',
+              transitionDelay: '100ms',
             }}
           >
             <span
@@ -137,14 +137,14 @@ const Clients: React.FC = () => {
             className="flex items-center justify-center gap-3 mb-6 transition-all duration-700 ease-out"
             style={{
               opacity: isVisible ? 1 : 0,
-              transitionDelay: '250ms',
+              transitionDelay: '100ms',
             }}
           >
             <div 
               className="h-px bg-gradient-to-r from-[#ed1b24] to-transparent transition-all duration-1000 ease-out"
               style={{
                 width: isVisible ? '64px' : '0px',
-                transitionDelay: '250ms',
+                transitionDelay: '100ms',
               }}
             ></div>
             <div className="w-2 h-2 bg-[#ed1b24] rotate-45"></div>
@@ -155,7 +155,7 @@ const Clients: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '350ms',
+              transitionDelay: '100ms',
             }}
           >
             Real partnerships, real impact. Hear directly from clients who trust us to deliver precision, quality, and on-time results across diverse projects.
@@ -171,7 +171,7 @@ const Clients: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateX(0)' : 'translateX(-50px)',
-                transitionDelay: '450ms',
+                transitionDelay: '100ms',
               }}
             >
               <div className="relative flex items-center justify-center" style={{ minHeight: "360px" }}>
