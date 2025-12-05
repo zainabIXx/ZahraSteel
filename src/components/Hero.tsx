@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateX(0)' : 'translateX(-30px)',
-                transitionDelay: '300ms',
+                transitionDelay: '100ms',
               }}
             >
               <div className="h-px w-12 bg-[#ed1b24]"></div>
@@ -87,7 +87,7 @@ const Hero: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transitionDelay: '500ms',
+                transitionDelay: '100ms',
               }}
             >
               <span
@@ -111,14 +111,14 @@ const Hero: React.FC = () => {
               className="flex items-center gap-3 transition-all duration-700 ease-out"
               style={{
                 opacity: isVisible ? 1 : 0,
-                transitionDelay: '700ms',
+                transitionDelay: '100ms',
               }}
             >
               <div 
                 className="h-px bg-gradient-to-r from-[#ed1b24] to-transparent transition-all duration-1000 ease-out"
                 style={{
                   width: isVisible ? '64px' : '0px',
-                  transitionDelay: '700ms',
+                  transitionDelay: '100ms',
                 }}
               ></div>
               <div className="w-2 h-2 bg-[#ed1b24] rotate-45"></div>
@@ -130,7 +130,7 @@ const Hero: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                transitionDelay: '900ms',
+                transitionDelay: '100ms',
               }}
             >
               Leading steel fabrication and engineering solutions across the UAE. 
@@ -143,7 +143,7 @@ const Hero: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-                transitionDelay: '1100ms',
+                transitionDelay: '100ms',
               }}
             >
               <a
@@ -189,14 +189,14 @@ const Hero: React.FC = () => {
         className="absolute bottom-10 right-10 w-32 h-32 border border-gray-300 opacity-20 transition-all duration-1000 ease-out"
         style={{
           transform: isVisible ? 'rotate(45deg) scale(1)' : 'rotate(0deg) scale(0)',
-          transitionDelay: '1500ms',
+          transitionDelay: '100ms',
         }}
       ></div>
       <div 
         className="absolute top-20 right-20 w-20 h-20 border border-[#ed1b24] opacity-10 transition-all duration-1000 ease-out"
         style={{
           transform: isVisible ? 'rotate(12deg) scale(1)' : 'rotate(0deg) scale(0)',
-          transitionDelay: '1700ms',
+          transitionDelay: '100ms',
         }}
       ></div>
 

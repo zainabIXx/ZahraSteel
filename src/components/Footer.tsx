@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Mail, Phone, MapPin, MessageSquare } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 import emailjs from '@emailjs/browser';
 import logo from "../assets/logo.png";
 
@@ -7,15 +7,15 @@ const Footer: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  // IMPORTANT: Changed field names to match EmailJS template parameters
   const [formData, setFormData] = useState({
-    from_name: "",      // Changed from "name"
-    from_email: "",     // Changed from "email"
+    from_name: "",
+    from_email: "",
     message: ""
   });
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -41,47 +41,70 @@ const Footer: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic validation
-    if (!formData.from_name || !formData.from_email || !formData.message) {
+    if (!formData.from_name.trim() || !formData.from_email.trim() || !formData.message.trim()) {
+      setErrorMessage('Please fill in all fields');
       setSubmitStatus('error');
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setTimeout(() => {
+        setSubmitStatus('idle');
+        setErrorMessage('');
+      }, 5000);
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.from_email)) {
+      setErrorMessage('Please enter a valid email address');
+      setSubmitStatus('error');
+      setTimeout(() => {
+        setSubmitStatus('idle');
+        setErrorMessage('');
+      }, 5000);
       return;
     }
     
     setIsSubmitting(true);
     setSubmitStatus('idle');
+    setErrorMessage('');
 
     try {
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
-      const serviceId = 'service_i65tyvg';
-      
-      const templateId = 'template_jg47ixk';
-     
-      const publicKey = 'nklRCV-McgVLOBp21';
-      // =====================================================================
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('EmailJS configuration is missing. Please check your environment variables.');
+      }
 
-      // Template parameters - these MUST match your EmailJS template variable names
       const templateParams = {
-        from_name: formData.from_name,    // Matches {{from_name}} in template
-        from_email: formData.from_email,  // Matches {{from_email}} in template
-        message: formData.message,        // Matches {{message}} in template
-        to_email: 'zahra_steel@hotmail.com' // Optional: can be set in EmailJS template instead
+        from_name: formData.from_name,
+        from_email: formData.from_email,
+        message: formData.message,
+        to_email: 'zahra_steel@hotmail.com'
       };
 
-      // Send email using EmailJS
-      await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      const response = await emailjs.send(serviceId, templateId, templateParams, publicKey);
+      
+      console.log('Email sent successfully:', response);
       
       setSubmitStatus('success');
       setFormData({ from_name: "", from_email: "", message: "" });
       
-      // Reset success message after 5 seconds
       setTimeout(() => setSubmitStatus('idle'), 5000);
     } catch (error) {
       console.error('Email send failed:', error);
+      
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage('Failed to send message. Please try again or contact us directly.');
+      }
+      
       setSubmitStatus('error');
       
-      // Reset error message after 5 seconds
-      setTimeout(() => setSubmitStatus('idle'), 5000);
+      setTimeout(() => {
+        setSubmitStatus('idle');
+        setErrorMessage('');
+      }, 7000);
     } finally {
       setIsSubmitting(false);
     }
@@ -96,11 +119,9 @@ const Footer: React.FC = () => {
 
   return (
     <footer id="contact">
-      {/* Contact Section */}
       <div ref={sectionRef} className="bg-gradient-to-br from-gray-50 to-gray-100 py-24">
         <div className="container mx-auto px-6 max-w-7xl">
           
-          {/* Header */}
           <div className="text-center mb-16">
             <div 
               className="flex items-center justify-center gap-4 mb-4 transition-all duration-700 ease-out"
@@ -167,11 +188,9 @@ const Footer: React.FC = () => {
             </p>
           </div>
 
-          {/* Contact Content */}
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
-              {/* Left Side - Contact Form */}
               <div
                 className="transition-all duration-700 ease-out"
                 style={{
@@ -181,16 +200,16 @@ const Footer: React.FC = () => {
                 }}
               >
                 <h3 className="text-xl font-heading mb-6 text-gray-800 border-l-4 border-[#ed1b24] pl-4">Send Us a Message</h3>
-                <div className="space-y-4">
-                  {/* Changed name attribute to match EmailJS template parameters */}
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <input
                     type="text"
                     name="from_name"
                     placeholder="Name"
                     value={formData.from_name}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     required
-                    className="w-full px-4 py-3 bg-white border-b-2 border-gray-300 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#ed1b24] transition-colors"
+                    className="w-full px-4 py-3 bg-white border-b-2 border-gray-300 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#ed1b24] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   />
 
                   <input
@@ -199,8 +218,9 @@ const Footer: React.FC = () => {
                     placeholder="Email"
                     value={formData.from_email}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     required
-                    className="w-full px-4 py-3 bg-white border-b-2 border-gray-300 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#ed1b24] transition-colors"
+                    className="w-full px-4 py-3 bg-white border-b-2 border-gray-300 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#ed1b24] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   />
 
                   <textarea
@@ -208,15 +228,16 @@ const Footer: React.FC = () => {
                     placeholder="Message"
                     value={formData.message}
                     onChange={handleChange}
+                    disabled={isSubmitting}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-white border-b-2 border-gray-300 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#ed1b24] transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-white border-b-2 border-gray-300 text-gray-800 placeholder:text-gray-400 focus:outline-none focus:border-[#ed1b24] transition-colors resize-none disabled:opacity-50 disabled:cursor-not-allowed"
                   />
 
                   <button
-                    onClick={handleSubmit}
+                    type="submit"
                     disabled={isSubmitting}
-                    className="w-full px-8 py-4 bg-gray-700 text-white font-body uppercase text-xs tracking-[0.2em] hover:bg-black transition-all duration-500 shadow-lg hover:shadow-2xl relative overflow-hidden group mt-4 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-8 py-4 bg-gray-700 text-white font-body uppercase text-xs tracking-[0.2em] hover:bg-black transition-all duration-500 shadow-lg hover:shadow-2xl relative overflow-hidden group mt-4 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-gray-700"
                   >
                     <span className="relative z-10">
                       {isSubmitting ? 'Sending...' : 'Send Message'}
@@ -224,21 +245,31 @@ const Footer: React.FC = () => {
                     <div className="absolute inset-0 bg-black transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
                   </button>
 
-                  {/* Status Messages */}
                   {submitStatus === 'success' && (
-                    <div className="mt-4 p-3 bg-green-100 border border-green-400 text-green-700 text-sm rounded">
-                      ✓ Message sent successfully! We'll get back to you soon.
+                    <div className="mt-4 p-4 bg-green-50 border-l-4 border-green-500 text-green-700 text-sm rounded-r">
+                      <div className="flex items-start gap-2">
+                        <span className="text-lg">✓</span>
+                        <div>
+                          <strong className="font-semibold">Success!</strong>
+                          <p className="mt-1">Message sent successfully! We will get back to you soon.</p>
+                        </div>
+                      </div>
                     </div>
                   )}
                   {submitStatus === 'error' && (
-                    <div className="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 text-sm rounded">
-                      ✗ Failed to send message. Please ensure all fields are filled or contact us directly.
+                    <div className="mt-4 p-4 bg-red-50 border-l-4 border-red-500 text-red-700 text-sm rounded-r">
+                      <div className="flex items-start gap-2">
+                        <span className="text-lg">✗</span>
+                        <div>
+                          <strong className="font-semibold">Error</strong>
+                          <p className="mt-1">{errorMessage || 'Failed to send message. Please ensure all fields are filled or contact us directly.'}</p>
+                        </div>
+                      </div>
                     </div>
                   )}
-                </div>
+                </form>
               </div>
 
-              {/* Right Side - Contact Information */}
               <div 
                 className="space-y-10 transition-all duration-700 ease-out"
                 style={{
@@ -248,7 +279,6 @@ const Footer: React.FC = () => {
                 }}
               >
                 
-                {/* Direct Contact */}
                 <div>
                   <h3 className="text-xl font-heading mb-6 text-gray-800 border-l-4 border-[#ed1b24] pl-4">Direct Contact</h3>
                   <p className="text-gray-600 text-base leading-relaxed mb-6 pl-4">
@@ -272,7 +302,6 @@ const Footer: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Visit Us */}
                 <div>
                   <h3 className="text-xl font-heading mb-6 text-gray-800 border-l-4 border-[#ed1b24] pl-4">Visit Us</h3>
                   
@@ -285,23 +314,23 @@ const Footer: React.FC = () => {
                       </div>
                     </div>
                     
-                    {/* Map */}
                     <a
-                      href="https://www.google.com/maps/place/Najmat+Al+Zahra+Steel/@25.3433831,55.6332345,17z/data=!3m1!4b1!4m6!3m5!1s0x3ef5f36f49f5c267:0x83c6f47bf6f50148!8m2!3d25.3433831!4d55.6332345!16s%2Fg%2F11h_c8lp6v?entry=ttu&g_ep=EgoyMDI1MTEyMy4xIKXMDSoASAFQAw%3D%3D"
+                      href="https://www.google.com/maps/place/Najmat+Al+Zahra+Steel/@25.3433831,55.6332345,17z"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block w-full h-48 bg-gray-200 border border-gray-300 hover:border-[#ed1b24] transition-colors duration-300 relative group overflow-hidden"
                     >
                       <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.849668741916!2d55.6332345!3d25.3433831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef5f36f49f5c267%3A0x83c6f47bf6f50148!2sNajmat%20Al%20Zahra%20Steel!5e0!3m2!1sen!2s!4v1234567890"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3606.849668741916!2d55.6332345!3d25.3433831!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ef5f36f49f5c267:0x83c6f47bf6f50148!2sNajmat%20Al%20Zahra%20Steel!5e0!3m2!1sen!2s!4v1234567890"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
-                        allowFullScreen
+                        allowFullScreen={true}
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
                         className="pointer-events-none"
-                      />
+                        title="Najmat Al Zahra Steel Location"
+                      ></iframe>
                       <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300 flex items-center justify-center">
                         <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-white px-4 py-2 rounded shadow-lg">
                           <span className="text-sm text-gray-800 font-body">Click to open in Google Maps</span>
@@ -318,12 +347,10 @@ const Footer: React.FC = () => {
         </div>
       </div>
 
-      {/* Footer Bottom */}
       <div className="bg-white border-t border-gray-200">
         <div className="container mx-auto px-6 py-16 max-w-7xl">
           <div className="grid md:grid-cols-3 gap-12 mb-12">
             
-            {/* Company Info */}
             <div
               className="transition-all duration-700 ease-out"
               style={{
@@ -345,7 +372,6 @@ const Footer: React.FC = () => {
               </p>
             </div>
 
-            {/* Quick Links */}
             <div
               className="transition-all duration-700 ease-out"
               style={{
@@ -363,7 +389,6 @@ const Footer: React.FC = () => {
               </ul>
             </div>
 
-            {/* Contact Info */}
             <div
               className="transition-all duration-700 ease-out"
               style={{
@@ -403,7 +428,6 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t border-gray-200">
           <div 
             className="container mx-auto px-6 py-8 flex flex-col md:flex-row justify-between items-center gap-4 transition-all duration-700 ease-out"

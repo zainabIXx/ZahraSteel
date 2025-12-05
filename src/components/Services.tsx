@@ -116,7 +116,7 @@ const Services: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-              transitionDelay: '300ms',
+              transitionDelay: '150ms',
             }}
           >
             <span
@@ -137,14 +137,14 @@ const Services: React.FC = () => {
             className="flex items-center justify-center gap-3 mb-6 transition-all duration-700 ease-out"
             style={{
               opacity: isVisible ? 1 : 0,
-              transitionDelay: '500ms',
+              transitionDelay: '250ms',
             }}
           >
             <div 
               className="h-px bg-gradient-to-r from-[#ed1b24] to-transparent transition-all duration-1000 ease-out"
               style={{
                 width: isVisible ? '64px' : '0px',
-                transitionDelay: '500ms',
+                transitionDelay: '250ms',
               }}
             ></div>
             <div className="w-2 h-2 bg-[#ed1b24] rotate-45"></div>
@@ -155,7 +155,7 @@ const Services: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '700ms',
+              transitionDelay: '300ms',
             }}
           >
             A refined service framework engineered to optimize workflow, strengthen outcomes, and support every phase with professional precision.
