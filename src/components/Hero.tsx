@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import mainImage from "../assets/main.jpg";
 
-const Hero: React.FC = () => {
+const Hero = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -28,7 +29,7 @@ const Hero: React.FC = () => {
         }}
       >
         <img
-          src="/src/assets/main.jpg"
+          src={mainImage}
           alt="Steel Architecture"
           className="w-full h-full object-cover"
         />
