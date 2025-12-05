@@ -223,7 +223,7 @@ const Clients: React.FC = () => {
                 minHeight: "360px",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateX(0)' : 'translateX(50px)',
-                transitionDelay: '500ms',
+                transitionDelay: '100ms',
               }}
             >
               {stats.map((stat, index) => (

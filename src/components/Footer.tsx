@@ -348,8 +348,8 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="bg-white border-t border-gray-200">
-        <div className="container mx-auto px-6 py-16 max-w-7xl">
-          <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <div className="container mx-auto px-6 py-16 max-w-7xl flex items-center justify-center min-h-[400px]">
+          <div className="grid md:grid-cols-3 gap-12 w-full max-w-5xl">
             
             <div
               className="transition-all duration-700 ease-out"
