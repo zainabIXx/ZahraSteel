@@ -1,4 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import c1 from "../assets/c1.jpeg";
+import c2 from "../assets/c2.jpeg";
+import c3 from "../assets/c3.jpeg";
+import c4 from "../assets/c4.jpeg";
 
 const Clients: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -17,10 +21,10 @@ const Clients: React.FC = () => {
   ];
 
   const logos = [
-    { id: 1, src: "src/assets/c1.jpeg", alt: "Client Logo 1" },
-    { id: 2, src: "src/assets/c2.jpeg", alt: "Client Logo 2" },
-    { id: 3, src: "src/assets/c3.jpeg", alt: "Client Logo 3" },
-    { id: 4, src: "src/assets/c4.jpeg", alt: "Client Logo 4" },
+    { id: 1, src: c1, alt: "Client Logo 1" },
+    { id: 2, src: c2, alt: "Client Logo 2" },
+    { id: 3, src: c3, alt: "Client Logo 3" },
+    { id: 4, src: c4, alt: "Client Logo 4" },
   ];
 
   const stats = [
@@ -98,7 +102,7 @@ const Clients: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '100ms',
+              transitionDelay: '50ms',
             }}
           >
             <div className="h-px w-12 bg-[#ed1b24]"></div>
@@ -112,7 +116,7 @@ const Clients: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
-              transitionDelay: '300ms',
+              transitionDelay: '150ms',
             }}
           >
             <span
@@ -133,14 +137,14 @@ const Clients: React.FC = () => {
             className="flex items-center justify-center gap-3 mb-6 transition-all duration-700 ease-out"
             style={{
               opacity: isVisible ? 1 : 0,
-              transitionDelay: '500ms',
+              transitionDelay: '250ms',
             }}
           >
             <div 
               className="h-px bg-gradient-to-r from-[#ed1b24] to-transparent transition-all duration-1000 ease-out"
               style={{
                 width: isVisible ? '64px' : '0px',
-                transitionDelay: '500ms',
+                transitionDelay: '250ms',
               }}
             ></div>
             <div className="w-2 h-2 bg-[#ed1b24] rotate-45"></div>
@@ -151,7 +155,7 @@ const Clients: React.FC = () => {
             style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-              transitionDelay: '700ms',
+              transitionDelay: '350ms',
             }}
           >
             Real partnerships, real impact. Hear directly from clients who trust us to deliver precision, quality, and on-time results across diverse projects.
@@ -167,7 +171,7 @@ const Clients: React.FC = () => {
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateX(0)' : 'translateX(-50px)',
-                transitionDelay: '900ms',
+                transitionDelay: '450ms',
               }}
             >
               <div className="relative flex items-center justify-center" style={{ minHeight: "360px" }}>
@@ -219,7 +223,7 @@ const Clients: React.FC = () => {
                 minHeight: "360px",
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateX(0)' : 'translateX(50px)',
-                transitionDelay: '1100ms',
+                transitionDelay: '500ms',
               }}
             >
               {stats.map((stat, index) => (
@@ -288,7 +292,7 @@ const Clients: React.FC = () => {
           style={{
             opacity: visibleLogos ? 1 : 0,
             transform: visibleLogos ? 'translateY(0)' : 'translateY(20px)',
-            transitionDelay: '200ms',
+            transitionDelay: '100ms',
           }}
         >
           <p className="text-base font-body text-gray-600 leading-relaxed">
