@@ -127,15 +127,14 @@ const Hero = () => {
             
             {/* Description - Fade in */}
             <p 
-              className="text-lg font-body text-gray-700 leading-relaxed transition-all duration-700 ease-out"
+              className="text-lg font-body text-gray-400 leading-relaxed transition-all duration-700 ease-out"
               style={{
                 opacity: isVisible ? 1 : 0,
                 transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
                 transitionDelay: '100ms',
               }}
             >
-              Leading steel fabrication and engineering solutions across the UAE. 
-              Delivering precision-crafted excellence in every project.
+              Leading steel fabrication and engineering across the UAE, delivering precision in every project. 
             </p>
 
             {/* CTA Buttons - Slide in from bottom */}
@@ -175,7 +174,7 @@ const Hero = () => {
                   }}
                 >
                   <div className="w-1 h-1 bg-[#ed1b24] group-hover:scale-150 transition-transform duration-300"></div>
-                  <span className="text-xs font-body text-gray-600 uppercase tracking-wider group-hover:text-[#ed1b24] transition-colors duration-300">{highlight}</span>
+                  <span className="text-xs font-body text-gray-400 uppercase tracking-wider group-hover:text-[#ed1b24] transition-colors duration-300">{highlight}</span>
                 </div>
               ))}
             </div>
