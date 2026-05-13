@@ -24,11 +24,6 @@ const Services: React.FC = () => {
       description: "State-of-the-art laser cutting technology for precise metal work with clean cuts and intricate designs."
     },
     {
-      title: "Powder & PVC Coating",
-      image: pvc,
-      description: "Professional coating services providing superior protection, corrosion resistance, and long-lasting finish."
-    },
-    {
       title: "Steel & Wooden Cable Drums",
       image: dru,
       description: "High-quality cable drums manufactured to industry standards for safe storage and transportation."
