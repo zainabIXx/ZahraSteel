@@ -32,6 +32,9 @@ const Hero = () => {
           src={mainImage}
           alt="Steel Architecture"
           className="w-full h-full object-cover"
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
         />
         <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/20 to-transparent"></div>
         
@@ -94,9 +97,7 @@ const Hero = () => {
               <span
                 className="inline-block bg-clip-text text-transparent font-bold"
                 style={{
-                  backgroundImage: "url('https://images.unsplash.com/photo-1582560475093-ba66accbc424?w=800')",
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
+                  backgroundImage: 'linear-gradient(135deg, #ed1b24 0%, #7a0d12 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
